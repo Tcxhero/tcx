@@ -1,0 +1,15 @@
+
+CREATE TABLE video_upload_chunk (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    upload_id VARCHAR(64) NOT NULL COMMENT '上传任务ID',
+    chunk_index INT NOT NULL COMMENT '分片索引',
+    chunk_size BIGINT NOT NULL COMMENT '分片大小',
+    chunk_path VARCHAR(255) NOT NULL COMMENT '分片存储路径',
+    md5_checksum VARCHAR(32) NOT NULL COMMENT 'MD5校验值',
+    create_by BIGINT UNSIGNED DEFAULT NULL COMMENT '创建人',
+    create_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_by BIGINT UNSIGNED DEFAULT NULL COMMENT '修改人',
+    update_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_upload_chunk (upload_id, chunk_index)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='视频上传分片记录表';

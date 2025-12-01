@@ -1,0 +1,13 @@
+
+CREATE TABLE sensitive_word (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    word_content VARCHAR(50) NOT NULL COMMENT '敏感词内容',
+    word_type TINYINT DEFAULT 1 COMMENT '词类型: 1-弹幕 2-评论 3-标题',
+    status TINYINT DEFAULT 1 COMMENT '状态: 1-启用 2-禁用',
+    create_by BIGINT UNSIGNED DEFAULT NULL COMMENT '创建人',
+    create_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_by BIGINT UNSIGNED DEFAULT NULL COMMENT '修改人',
+    update_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_word_content_type (word_content, word_type)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='敏感词库表';

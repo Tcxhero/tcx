@@ -1,0 +1,16 @@
+
+CREATE TABLE danmaku (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    video_id BIGINT UNSIGNED NOT NULL COMMENT '视频ID',
+    sender_id BIGINT UNSIGNED NOT NULL COMMENT '发送者ID',
+    content VARCHAR(200) NOT NULL COMMENT '弹幕内容',
+    play_time_second INT NOT NULL COMMENT '播放时间点（秒）',
+    color VARCHAR(10) DEFAULT '#FFFFFF' COMMENT '弹幕颜色',
+    position TINYINT DEFAULT 1 COMMENT '弹幕位置: 1-滚动 2-顶部 3-底部',
+    create_by BIGINT UNSIGNED DEFAULT NULL COMMENT '创建人',
+    create_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_by BIGINT UNSIGNED DEFAULT NULL COMMENT '修改人',
+    update_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+    PRIMARY KEY (id),
+    INDEX idx_video_playtime (video_id, play_time_second)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='视频弹幕表';

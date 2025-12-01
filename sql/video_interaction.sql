@@ -1,0 +1,15 @@
+
+CREATE TABLE video_interaction (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    video_id BIGINT UNSIGNED NOT NULL COMMENT '视频ID',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT '用户ID',
+    like_status TINYINT DEFAULT 0 COMMENT '点赞状态: 0-无 1-已点赞',
+    coin_amount INT DEFAULT 0 COMMENT '投币数量',
+    favorite_status TINYINT DEFAULT 0 COMMENT '收藏状态: 0-无 1-已收藏',
+    create_by BIGINT UNSIGNED DEFAULT NULL COMMENT '创建人',
+    create_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_by BIGINT UNSIGNED DEFAULT NULL COMMENT '修改人',
+    update_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_user_video (user_id, video_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='视频互动行为表（点赞/投币/收藏）';

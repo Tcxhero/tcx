@@ -1,0 +1,14 @@
+
+CREATE TABLE recommended_video (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT '用户ID',
+    video_id BIGINT UNSIGNED NOT NULL COMMENT '推荐视频ID',
+    reason_type TINYINT DEFAULT 1 COMMENT '推荐原因: 1-热门 2-兴趣匹配',
+    weight_score DECIMAL(5,2) DEFAULT 0.00 COMMENT '推荐权重分数',
+    create_by BIGINT UNSIGNED DEFAULT NULL COMMENT '创建人',
+    create_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_by BIGINT UNSIGNED DEFAULT NULL COMMENT '修改人',
+    update_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_user_video_recommend (user_id, video_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='个性化推荐视频表';

@@ -1,0 +1,13 @@
+
+CREATE TABLE daily_message_limit (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    user_id BIGINT UNSIGNED NOT NULL COMMENT '用户ID',
+    send_date DATE NOT NULL COMMENT '发送日期',
+    message_count INT DEFAULT 0 COMMENT '当日发送条数',
+    create_by BIGINT UNSIGNED DEFAULT NULL COMMENT '创建人',
+    create_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_by BIGINT UNSIGNED DEFAULT NULL COMMENT '修改人',
+    update_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_user_send_date (user_id, send_date)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='每日私信发送限制表';
