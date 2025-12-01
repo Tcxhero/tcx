@@ -6,6 +6,7 @@
   <artifactId>JavaProject</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>JavaProject</name>
+<!--你好啊-->
   <description>用户认证与登录管理系统</description>
   <properties>
     <java.version>17</java.version>
